@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SQLite
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
