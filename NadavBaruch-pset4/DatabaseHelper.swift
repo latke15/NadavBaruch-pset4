@@ -15,7 +15,7 @@ class DatabaseHelper {
 private var db: Connection?
 
 let users = Table("users")
-let id = Expression<Int64>("id")
+let id = Expression<Int>("id")
 let note = Expression<String>("note")
     
     init?() {
@@ -59,9 +59,6 @@ let note = Expression<String>("note")
         do {
             
             let rowId = try db!.run(insert)
-            print("rowId")
-            print(rowId)
-            print(id)
             
         } catch {
             // error handling
@@ -93,7 +90,7 @@ let note = Expression<String>("note")
         do {
             
             count = try db!.scalar(users.select(note.count))
-            print(count)
+//            print(count)
             
         } catch {
             
@@ -104,17 +101,22 @@ let note = Expression<String>("note")
         
     }
     
-    func deleteRows(index: Int) {
+    func deleteRows(index: Int) throws {
+        var rowId = Int()
         var count = 0
+        
         do {
-            let alice = users.filter(id == rowid)
+            for checkId in try db!.prepare(users) {
+                if count == index {
+                    rowId = checkId[id]
+                }
+                count += 1
+            }
+            let alice = users.filter(id == rowId)
             try db!.run(alice.delete())
-            print("deleted alice")
-            count += 1
         } catch {
             print("delete failed: \(error)")
         }
-
     }
 }
 

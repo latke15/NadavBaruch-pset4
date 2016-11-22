@@ -66,7 +66,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     {
         if editingStyle == .delete
         {
-            try db!.deleteRows(index: indexPath.row)
+            try! db!.deleteRows(index: indexPath.row)
+            print(indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
     }
