@@ -13,7 +13,7 @@
 		022CCA631DE1C80400E59753 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 022CCA621DE1C80400E59753 /* Assets.xcassets */; };
 		022CCA661DE1C80400E59753 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 022CCA641DE1C80400E59753 /* LaunchScreen.storyboard */; };
 		022CCA6E1DE1C99C00E59753 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022CCA6D1DE1C99C00E59753 /* TextCell.swift */; };
-		028B86CB1DE3325200923871 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B86CA1DE3325200923871 /* Database.swift */; };
+		028B86CB1DE3325200923871 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B86CA1DE3325200923871 /* DatabaseHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 		022CCA671DE1C80400E59753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		022CCA6D1DE1C99C00E59753 /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		028B86B11DE32AE200923871 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
-		028B86CA1DE3325200923871 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		028B86CA1DE3325200923871 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 				022CCA5D1DE1C80400E59753 /* ViewController.swift */,
 				022CCA6D1DE1C99C00E59753 /* TextCell.swift */,
 				022CCA5F1DE1C80400E59753 /* Main.storyboard */,
-				028B86CA1DE3325200923871 /* Database.swift */,
+				028B86CA1DE3325200923871 /* DatabaseHelper.swift */,
 				022CCA621DE1C80400E59753 /* Assets.xcassets */,
 				022CCA641DE1C80400E59753 /* LaunchScreen.storyboard */,
 				022CCA671DE1C80400E59753 /* Info.plist */,
@@ -271,7 +271,7 @@
 			files = (
 				022CCA6E1DE1C99C00E59753 /* TextCell.swift in Sources */,
 				022CCA5E1DE1C80400E59753 /* ViewController.swift in Sources */,
-				028B86CB1DE3325200923871 /* Database.swift in Sources */,
+				028B86CB1DE3325200923871 /* DatabaseHelper.swift in Sources */,
 				022CCA5C1DE1C80400E59753 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
