@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var inputField: UITextField!
     
     private let db = DatabaseHelper()
-    var array = [String]()
     
     let textCellIdentifier = "TextCell"
     override func viewDidLoad() {
@@ -40,7 +39,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         inputField.text = nil
         self.tableView.reloadData()
     }
-    
 
     private func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -51,6 +49,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath)
         cell.textLabel?.text = try! db!.read(index: indexPath.row)
+        let checkState = try! db!.readCheck(index: indexPath.row)
+        cell.checkSwitch.setOn(checkState, animated: true)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,6 +69,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print(indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
+        }
+    }
+    
+    @IBAction func checkNote(_ sender: Any) {
+        // source: http://stackoverflow.com/questions/39603922/getting-row-of-uitableview-cell-on-button-press-swift-3
+        let switchPos = (sender as AnyObject).convert(CGPoint.zero, to: self.tableView)
+        let indexPath = self.tableView.indexPathForRow(at: switchPos)
+        do {
+            try db!.checkSwitch(index: indexPath!.row)
+        } catch {
+            print(error)
         }
     }
 }

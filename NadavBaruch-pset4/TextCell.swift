@@ -8,9 +8,11 @@
 
 import UIKit
 
-class NoteCell: UITableViewCell {
+class TextCell: UITableViewCell {
     @IBOutlet weak var inputText: UILabel!
+    @IBOutlet weak var checkSwitch: UISwitch!
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

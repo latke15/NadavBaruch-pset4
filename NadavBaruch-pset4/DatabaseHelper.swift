@@ -17,6 +17,7 @@ private var db: Connection?
 let users = Table("users")
 let id = Expression<Int>("id")
 let note = Expression<String>("note")
+let check = Expression<Bool>("check")
     
     init?() {
         do {
@@ -44,6 +45,7 @@ let note = Expression<String>("note")
                 
                 t.column(id, primaryKey: .autoincrement)
                 t.column(note)
+                t.column(check)
                 
             } )
         } catch {
@@ -54,7 +56,7 @@ let note = Expression<String>("note")
     
     func create(note: String) throws {
         
-        let insert = users.insert(self.note <- note)
+        let insert = users.insert(self.note <- note, self.check <- false)
         
         do {
             
@@ -85,6 +87,64 @@ let note = Expression<String>("note")
         return result
     }
     
+    func readCheck(index: Int) throws -> Bool? {
+        
+        var result = false
+        var count = 0
+        
+        do {
+            
+            for user in try db!.prepare(users) {
+                if count == index {
+                    result = user[check]
+                }
+                count += 1
+            }
+        } catch {
+            // error handling
+            throw error
+            
+        }
+        return result
+    }
+    
+    func checkSwitch(index: Int) throws {
+        
+        var rowID: Int
+        var rowCheck: Bool
+        rowID = 0
+        rowCheck = false
+        var count = 0
+        
+        do {
+            for row in try db!.prepare(users.select(id, check)) {
+                if count == index {
+                    rowID = (row[id])
+                    rowCheck = row[check]
+                }
+                count += 1
+            }
+        } catch {
+            throw error
+        }
+        
+        let checkState = users.filter(id == rowID)
+        
+        if(rowCheck == false) {
+            do {
+                print(try db!.run(checkState.update(check <- true)))
+            } catch {
+                print(error)
+            }
+        } else {
+            do {
+                print(try db!.run(checkState.update(check <- false)))
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     func countRows() throws -> Int? {
         var count = 0
         do {
@@ -112,8 +172,8 @@ let note = Expression<String>("note")
                 }
                 count += 1
             }
-            let alice = users.filter(id == rowId)
-            try db!.run(alice.delete())
+            let note = users.filter(id == rowId)
+            try db!.run(note.delete())
         } catch {
             print("delete failed: \(error)")
         }
