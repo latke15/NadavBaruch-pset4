@@ -47,8 +47,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             }
         }
+        
+        // source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
+        // Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        
+        // Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        // tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
 
     }
+    // source: http://stackoverflow.com/questions/24126678/close-ios-keyboard-by-touching-anywhere-using-swift
+    // Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        // Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     @IBAction func addButton(_ sender: Any) {
         do {
             try db!.create(note: inputField.text!)
