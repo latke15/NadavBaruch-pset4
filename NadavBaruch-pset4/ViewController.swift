@@ -12,9 +12,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputField: UITextField!
     
+    // initialize database
     private let db = DatabaseHelper()
-    
-    let textCellIdentifier = "TextCell"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +26,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if db == nil {
             print("Error!")
             print(Error.self)
+        }
+        
+        
+        // source: http://stackoverflow.com/questions/30635160/how-to-check-if-the-ios-app-is-running-for-the-first-time-using-swift
+        if(UserDefaults.standard.bool(forKey: "HasLaunchedOnce"))
+        {
+            // app already launched
+        }
+        else
+        {
+            // This is the first launch ever
+            UserDefaults.standard.set(true, forKey: "HasLaunchedOnce")
+            UserDefaults.standard.synchronize()
+            do {
+                try db!.create(note: "Add the text you want to input on top!")
+                try db!.create(note: "You can delete a note by swiping left!")
+                try db!.create(note: "Check off an item by switching the switch!")
+            } catch {
+                
+            }
         }
 
     }
@@ -40,6 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.tableView.reloadData()
     }
 
+    // table functions
     private func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -47,10 +68,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return try! db!.countRows()!
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath)
-        cell.textLabel?.text = try! db!.read(index: indexPath.row)
-        let checkState = try! db!.readCheck(index: indexPath.row)
-        cell.checkSwitch.setOn(checkState, animated: true)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath as IndexPath) as! TextCell
+        do {
+            cell.inputText.text = try db!.read(index: indexPath.row)
+            let checkState = try db!.readCheck(index: indexPath.row)
+            cell.checkSwitch.setOn(checkState!, animated: true)
+        } catch {
+            print(error)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

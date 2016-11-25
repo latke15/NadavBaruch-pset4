@@ -31,13 +31,13 @@ let check = Expression<Bool>("check")
     private func setupDatabase() throws {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         do {
-            db = try Connection("\(path)/db.sqlite3")
+            db = try Connection("\(path)/db2.sqlite3")
             try createTable()
         } catch {
             // error handling
             throw error
         }
-}
+    }
 
     private func createTable() throws {
         do {
@@ -150,7 +150,6 @@ let check = Expression<Bool>("check")
         do {
             
             count = try db!.scalar(users.select(note.count))
-//            print(count)
             
         } catch {
             

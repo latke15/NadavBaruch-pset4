@@ -1,5 +1,5 @@
 //
-//  NoteCell.swift
+//  TextCell.swift
 //  NadavBaruch-pset4
 //
 //  Created by Nadav Baruch on 20-11-16.

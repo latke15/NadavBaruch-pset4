@@ -15,6 +15,8 @@
 		022CCA6E1DE1C99C00E59753 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022CCA6D1DE1C99C00E59753 /* TextCell.swift */; };
 		028B86CB1DE3325200923871 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B86CA1DE3325200923871 /* DatabaseHelper.swift */; };
 		028B86FB1DE48F1600923871 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028B86EE1DE48F0D00923871 /* SQLite.framework */; };
+		02C9E9701DE85A0600C1A051 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028B86EE1DE48F0D00923871 /* SQLite.framework */; };
+		02C9E9711DE85A0600C1A051 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 028B86EE1DE48F0D00923871 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +69,28 @@
 			remoteGlobalIDString = A121AC451CA35C79005A31D1;
 			remoteInfo = "SQLite watchOS";
 		};
+		02C9E9721DE85A0600C1A051 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 028B86B11DE32AE200923871 /* SQLite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE247AD21C3F04ED00AE3E12;
+			remoteInfo = "SQLite iOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		02C9E9741DE85A0700C1A051 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				02C9E9711DE85A0600C1A051 /* SQLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		022CCA581DE1C80400E59753 /* NadavBaruch-pset4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NadavBaruch-pset4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C9E9701DE85A0600C1A051 /* SQLite.framework in Frameworks */,
 				028B86FB1DE48F1600923871 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,10 +174,12 @@
 				022CCA541DE1C80400E59753 /* Sources */,
 				022CCA551DE1C80400E59753 /* Frameworks */,
 				022CCA561DE1C80400E59753 /* Resources */,
+				02C9E9741DE85A0700C1A051 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				02C9E9731DE85A0600C1A051 /* PBXTargetDependency */,
 			);
 			name = "NadavBaruch-pset4";
 			productName = "NadavBaruch-pset4";
@@ -280,6 +306,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		02C9E9731DE85A0600C1A051 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SQLite iOS";
+			targetProxy = 02C9E9721DE85A0600C1A051 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		022CCA5F1DE1C80400E59753 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -396,6 +430,7 @@
 		022CCA6B1DE1C80400E59753 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BV799T69S6;
 				INFOPLIST_FILE = "NadavBaruch-pset4/Info.plist";
@@ -409,6 +444,7 @@
 		022CCA6C1DE1C80400E59753 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BV799T69S6;
 				INFOPLIST_FILE = "NadavBaruch-pset4/Info.plist";
