@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             do {
                 try db!.create(note: "Add the text you want to input on top!")
                 try db!.create(note: "You can delete a note by swiping left!")
-                try db!.create(note: "Check off an item by switching the switch!")
+                try db!.create(note: "Check off an item using the switch!")
             } catch {
                 
             }
